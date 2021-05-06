@@ -1,15 +1,19 @@
 package UML;
 
-import java.io.*;
-import java.nio.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class JumunUI implements Suju {
+
+public class JumunUI {
 	Scanner sc = new Scanner(System.in);
-	ArrayList<Customer> customer = new ArrayList<Customer>();
+	
 	public void checkInfo() {
+		Customer customer = new Customer();
+		ArrayList<Customer> customList = new ArrayList<Customer>();
 		System.out.println("고객번호를 확인하려면 성명을 입력해 주세요.");
 		
 		
@@ -27,7 +31,12 @@ public class JumunUI implements Suju {
 				String array[] = line.split(",");
 				
 				tmpList = Arrays.asList(array);
-				customer.add(new Customer(array[1], array[2], array[3]));
+				customer.setCustomNum(array[0]);
+				customer.setCustomName(array[1]);
+				customer.setCustomAddr(array[2]);
+				customer.setCustomPhone(array[3]);
+				
+				customList.add(customer);
 				
 				i++;
 			}
@@ -45,20 +54,20 @@ public class JumunUI implements Suju {
 			}
 		}
 		
-		for(int j = 0; j < customer.size(); j++) {
-			if (!((Customer) customer.get(j)).getCustomName().equals(put_name)) {
+		for(int j = 0; j < customList.size(); j++) {
+			if (!((Customer) customList.get(j)).getCustomName().equals(put_name)) {
 				continue;
 			} // if end
-			System.out.println(((Customer) customer.get(j)).getCustomName() + "\t\t| " + ((Customer) customer.get(j)).getCustomCode()); 
+			System.out.println(((Customer) customList.get(j)).getCustomNum() + "\t\t| " + ((Customer) customList.get(j)).getCustomName()); 
 		}
 	}
-	public void Regist(int sujuCode){
-		sujuCode++;
-	}
-
-	public void getSujuDate(String sujuDate) {
+	public void inputSuju() {
 		
 	}
-
-	
+	public void registSuju() {
+		
+	}
+	public void cancelSuju() {
+		
+	}
 }
