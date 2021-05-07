@@ -1,12 +1,12 @@
 package UML;
 
 public class Customer {
-	private String customNum;
+	private int customNum;
 	private String customName;
 	private String customAddr;
 	private String customPhone;
 	
-	public String getCustomNum() {
+	public int getCustomNum() {
 		return customNum;
 	}
 	public String getCustomName() {
@@ -18,7 +18,7 @@ public class Customer {
 	public String getCustomPhone() {
 		return customPhone;
 	}
-	public void setCustomNum(String customNum) {
+	public void setCustomNum(int customNum) {
 		this.customNum = customNum;
 	}
 	public void setCustomName(String customName) {
@@ -30,4 +30,10 @@ public class Customer {
 	public void setCustomPhone(String customPhone) {
 		this.customPhone = customPhone;
 	}
+	@Override
+	public String toString() {
+		return "Customer [customNum=" + customNum + ", customName=" + customName + "]";
+	}
+	
+	
 }
