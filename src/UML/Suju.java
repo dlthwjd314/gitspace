@@ -14,9 +14,7 @@ public class Suju {
 	public int getSujuNum() {
 		return sujuNum;
 	}
-//	public void setSujuNum(int sujuNum) {
-//		this.sujuNum = sujuNum;
-//	}
+
 	public void getSujuDate(Date sujuDate) {
 		System.out.println(sujuDate);
 	}

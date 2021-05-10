@@ -26,11 +26,5 @@ public class main {
 			}
 		}
 
-//		System.out.println("*** 상품 리스트 *** \n");
-//		for (int j = 0; j < itemList.size(); j++) {
-//			System.out.println(((Items) itemList.get(j)).getItemCode() + "\t\t| "
-//					+ ((Items) itemList.get(j)).getItemName() + "\t\t| "
-//					+ ((Items) itemList.get(j)).getPrice());
-//		} // for end
 	}
 }
