@@ -8,14 +8,16 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class JumunUI {
-	Suju suju = new Suju();
 	Scanner sc = new Scanner(System.in);
 
 	Customer customer = new Customer();
 	Items items = new Items();
+	Suju suju = new Suju();
 	SujuDetail sd = new SujuDetail();
 	ArrayList inputList = new ArrayList();
 	ArrayList jumunList = new ArrayList();
+
+	int count = 0;
 
 	public void checkCustom() {
 		ArrayList<Customer> customList = new ArrayList<Customer>();
@@ -25,7 +27,7 @@ public class JumunUI {
 		BufferedReader br = null;
 		int i = 0;
 		String put_name = sc.next();
-		
+
 		try {
 			br = Files.newBufferedReader(Paths.get("./customers.csv"));
 			br.readLine();
@@ -33,10 +35,10 @@ public class JumunUI {
 
 			while ((line = br.readLine()) != null) {
 
-				//List<String> tmpList = new ArrayList<String>();
+				// List<String> tmpList = new ArrayList<String>();
 				String array[] = line.split(",");
 
-				//tmpList = Arrays.asList(array);
+				// tmpList = Arrays.asList(array);
 
 				customer.setCustomNum(Integer.parseInt(array[0]));
 				customer.setCustomName(array[1]);
@@ -82,8 +84,7 @@ public class JumunUI {
 			br.readLine(); // ㅇㅅㅇ! 첫행 읽어 버림
 			String line = "";
 
-			while ((line = br.readLine()) != null) { //두번 째 행부터 읽음
-
+			while ((line = br.readLine()) != null) { // 두번 째 행부터 읽음
 
 				String array[] = line.split(",");
 
@@ -113,6 +114,9 @@ public class JumunUI {
 	}
 
 	public void inputSuju() {
+		if (inputList.size() != 0)
+			inputList.clear();
+
 		checkCustom();
 		checkItem();
 
@@ -121,41 +125,43 @@ public class JumunUI {
 		customer.setCustomNum(sc.nextInt());
 		items.setItemCode(sc.nextInt());
 		sd.setSujuCount(sc.nextInt());
-		
-		//String array[] = line.split(",");
-		List tmplist = new ArrayList();
-		
-		tmplist.add(customer.getCustomNum());
-		tmplist.add(items.getItemCode());
-		tmplist.add(sd.getSujuCount());
-		
-		inputList.add(tmplist);
+
+		// String array[] = line.split(",");
+
+		inputList.add(customer.getCustomNum());
+		inputList.add(items.getItemCode());
+		inputList.add(sd.getSujuCount());
 
 		System.out.println(inputList);
 
 		System.out.println("주문을 등록하시겠습니까?    (y/n)");
-		if (sc.next().equals("y"))
+		if (sc.next().equals("y")) {
 			registSuju();
-		else
+		} else {
+			inputList.clear();
 			System.out.println("주문을 등록하지 않았습니다.");
-		return;
+			return;
+		}
 	}
 
 	public void registSuju() {
-		
-		List tmplist = new ArrayList();
-		tmplist.add(e)
+		suju.sujuRegist(count++, sd);
+
+		HashMap jumunMap = new HashMap();
+
+		jumunMap.put(suju.getSujuNum(), inputList);
 
 		System.out.println("주문번호" + suju.getSujuNum() + "가 등록 되었습니다.");
-		System.out.println(jumunList);
+
+		Iterator<Integer> keys = jumunMap.keySet().iterator();
+		while (keys.hasNext()) {
+			int key = keys.next();
+			System.out.println(String.format("키 : %s, 값 : %s", key, jumunMap.get(key)));
+		}
 
 	}
 
 	public void cancelSuju() {
-		for (int i = 0; i < jumunList.size(); i++) {
-			if ( ((Customer)inputList.get(i)).getCustomNum() == sc.nextInt()) {
-				jumunList.remove(i);
-			}
-		}
+
 	}
 }
